@@ -28,3 +28,14 @@ export type DjVuGlobal = {
 		getPageNumber?: () => number;
 	};
 };
+
+/**
+ * Message types for communication between the parent window and the DjVu viewer iframe.
+ */
+export type DjvuIframeMessage =
+	| { type: "DJVU_READY" }
+	| { type: "DJVU_LOADED" }
+	| { type: "DJVU_ERROR"; message?: string }
+	| { type: "DJVU_CONTEXT_MENU"; text?: string; page?: number; x?: number; y?: number }
+	| { type: "DJVU_PAGE_CHANGED"; page?: number }
+	| { type: "DJVU_CLICK" };

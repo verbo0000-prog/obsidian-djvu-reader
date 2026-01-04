@@ -18,6 +18,7 @@ import { FileView, Menu, Notice, TFile, WorkspaceLeaf } from "obsidian";
 import type DjVuReaderPlugin from "../main";
 import { getDjvuLibraryResourcePath } from "../djvu/loadDjvuLibrary";
 import { getDjvuViewerLibraryResourcePath } from "../djvu/loadDjvuViewerLibrary";
+import type { DjvuIframeMessage } from "../djvu/types";
 
 /** Unique identifier for registering this view type with Obsidian */
 export const VIEW_TYPE_DJVU = "djvu-reader";
@@ -274,8 +275,9 @@ export class DjvuView extends FileView {
 			this.messageHandler = (evt: MessageEvent) => {
 				// Ignore messages from other sources
 				if (evt.source !== iframe.contentWindow) return;
-				const data = evt.data;
-				if (!data?.type) return;
+				const rawData: unknown = evt.data;
+				if (!rawData || typeof rawData !== "object" || !("type" in rawData)) return;
+				const data = rawData as DjvuIframeMessage;
 
 				// Handle different message types from iframe
 				if (data.type === "DJVU_READY" && this.initWait?.seq === seq) {
@@ -286,7 +288,7 @@ export class DjvuView extends FileView {
 				} else if (data.type === "DJVU_ERROR" && this.initWait?.seq === seq) {
 					// Viewer encountered an error
 					window.clearTimeout(this.initWait.timeout);
-					this.initWait.reject(new Error(data.message || "DjVu viewer error"));
+					this.initWait.reject(new Error(data.message ?? "DjVu viewer error"));
 					this.initWait = null;
 				} else if (data.type === "DJVU_CONTEXT_MENU") {
 					// User right-clicked with text selected

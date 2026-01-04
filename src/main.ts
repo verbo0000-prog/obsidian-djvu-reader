@@ -57,7 +57,8 @@ export default class DjVuReaderPlugin extends Plugin {
 	 * Merges with defaults to handle missing properties.
 	 */
 	private async loadPluginData(): Promise<void> {
-		this.data = Object.assign({}, DEFAULT_DATA, await this.loadData());
+		const loaded = (await this.loadData()) as Partial<DjVuPluginData> | null;
+		this.data = Object.assign({}, DEFAULT_DATA, loaded);
 	}
 
 	/**
