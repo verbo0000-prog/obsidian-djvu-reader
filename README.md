@@ -1,6 +1,6 @@
 # DjVu Reader for Obsidian
 
-View DjVu files directly inside Obsidian with full navigation, text selection, and deep linking support.
+View DjVu files with full navigation, text selection, and deep linking support.
 
 ## Features
 
