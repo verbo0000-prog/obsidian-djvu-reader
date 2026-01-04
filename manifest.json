@@ -1,7 +1,7 @@
 {
 	"id": "djvu-reader",
 	"name": "DjVu Reader",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"minAppVersion": "0.15.0",
 	"description": "View DjVu files with page navigation, text selection, and quote linking.",
 	"author": "Dedekind",

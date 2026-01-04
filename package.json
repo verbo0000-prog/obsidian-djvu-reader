@@ -1,6 +1,6 @@
 {
 	"name": "djvu-reader",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "View DjVu files with page navigation, text selection, and quote linking.",
 	"main": "main.js",
 	"type": "module",
