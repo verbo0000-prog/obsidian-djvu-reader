@@ -81,6 +81,7 @@ export class DjvuView extends FileView {
 	 * Sets up the container CSS class for styling.
 	 */
 	async onOpen(): Promise<void> {
+		await super.onOpen();
 		this.contentEl.addClass("djvu-view-container");
 	}
 
@@ -170,8 +171,9 @@ export class DjvuView extends FileView {
 	 * Called when the current file is being unloaded.
 	 * Cleans up resources before loading a new file.
 	 */
-	async onUnloadFile(_file: TFile): Promise<void> {
+	async onUnloadFile(file: TFile): Promise<void> {
 		this.cleanup();
+		await super.onUnloadFile(file);
 	}
 
 	/**
