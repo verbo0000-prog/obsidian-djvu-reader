@@ -133,8 +133,10 @@ export class DjvuView extends FileView {
 		if (highlight !== null) {
 			try {
 				// UTF-8 safe base64 decoding: handles non-ASCII characters
-				// Decode: base64 → escaped string → UTF-8 string
-				this.pendingHighlight = decodeURIComponent(escape(atob(highlight)));
+				// Decode: base64 → binary string → Uint8Array → UTF-8 string
+				const binaryStr = atob(highlight);
+				const bytes = Uint8Array.from(binaryStr, (c) => c.charCodeAt(0));
+				this.pendingHighlight = new TextDecoder().decode(bytes);
 			} catch {
 				this.pendingHighlight = null;
 			}
@@ -367,8 +369,10 @@ export class DjvuView extends FileView {
 		const rect = this.iframeEl.getBoundingClientRect();
 		
 		// UTF-8 safe base64 encoding for the link
-		// Encode: UTF-8 string → escaped string → base64 → URL-encoded
-		const encodedText = encodeURIComponent(btoa(unescape(encodeURIComponent(text))));
+		// Encode: UTF-8 string → Uint8Array → binary string → base64 → URL-encoded
+		const bytes = new TextEncoder().encode(text);
+		const binaryStr = Array.from(bytes, (b) => String.fromCharCode(b)).join("");
+		const encodedText = encodeURIComponent(btoa(binaryStr));
 		
 		// Build Obsidian link with page and encoded highlight text
 		const linkWithHighlight = `[[${this.file.path}#page=${page}&q=${encodedText}|${this.file.name} (page ${page})]]`;
