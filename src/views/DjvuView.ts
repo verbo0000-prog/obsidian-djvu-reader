@@ -165,6 +165,7 @@ export class DjvuView extends FileView {
 		this.pendingHighlight = null;
 		
 		void this.render(file, page, highlight);
+		await Promise.resolve();
 	}
 
 	/**
