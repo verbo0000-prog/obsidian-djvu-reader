@@ -6,5 +6,5 @@
 	"description": "View DjVu files with page navigation, text selection, and quote linking.",
 	"author": "Dedekind",
 	"authorUrl": "",
-	"isDesktopOnly": false
+	"isDesktopOnly": true
 }
