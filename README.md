@@ -36,7 +36,7 @@ Right-click on selected text to access the context menu:
 3. Select **Install**, then **Enable**
 
 ### Manual installation
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/yourusername/obsidian-djvu-reader/releases)
+1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/verbo0000-prog/obsidian-djvu-reader/releases)
 2. Create a folder `<vault>/.obsidian/plugins/obsidian-djvu-reader/`
 3. Copy the downloaded files into the folder
 4. Reload Obsidian and enable the plugin in **Settings → Community plugins**
