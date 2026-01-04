@@ -68,7 +68,7 @@ The pasted quote will look like:
 
 ## Third-party libraries
 
-This plugin uses [DjVu.js](https://github.com/nicotailorr/djvujs) (MIT License) for DjVu file rendering.
+This plugin uses [DjVu.js](https://djvu.js.org/) (MIT License) for DjVu file rendering.
 
 ## License
 
